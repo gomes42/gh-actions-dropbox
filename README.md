@@ -7,9 +7,9 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
 `File Upload`<br>
 `Download folder as .zip`<br>
 
-# 📄 Examples Usage
+# 📝 Examples Usage
 
-<details>
+<details open>
 <summary>Upload file to Dropbox 📤</summary>
 <br>
 
@@ -41,7 +41,7 @@ jobs:
 
 </details>
 
-<details>
+<details open>
 <summary>Download a folder as <code>.zip</code> from Dropbox 📁</summary>
 <br>
 
@@ -77,6 +77,6 @@ jobs:
 
 Contributions are welcome! Please feel free to submit a [Pull Request](https://github.com/lgxm3z/gh-actions-dropbox/pulls) or [open an issue](https://github.com/lgxm3z/gh-actions-dropbox/issues).
 
-# 📄 License
+# 📜 License
 
 The scripts and documentation in this project are released under the [MIT License](./LICENSE).
