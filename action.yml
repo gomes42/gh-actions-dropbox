@@ -1,7 +1,7 @@
 name: "gh-actions-dropbox"
 description: "📦 Github Actions for Dropbox API. (Upload, Download .zip)"
 branding:
-  icon: align-justify
+  icon: upload-cloud
   color: blue
 
 runs:
