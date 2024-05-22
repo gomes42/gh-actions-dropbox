@@ -13,11 +13,10 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
 
 2. Set Required Permissions:
 
-| Action 🚀          | Permissions 🚦        |
-| ------------------ | --------------------- |
-| files/upload       | `files.content.write` |
-| files/download_zip | `files.content.read`  |
-|                    |                       |
+   | Action 🚀          | Permissions 🚦        |
+   | ------------------ | --------------------- |
+   | files/upload       | `files.content.write` |
+   | files/download_zip | `files.content.read`  |
 
 3. Generate an **Access Token** and **Refresh Token**: <br/> Follow [This Guide](https://preventdirectaccess.com/docs/create-app-key-access-token-for-dropbox-account/#access-token).
 
@@ -25,9 +24,9 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
    `Settings > Secrets and variables > Actions > Secrets > New repository secret`
 
 ```bash
-DROPBOX_APP_KEY
-DROPBOX_APP_SECRET
-DROPBOX_REFRESH_TOKEN
+DROPBOX_APP_KEY = ##################
+DROPBOX_APP_SECRET = ##################
+DROPBOX_REFRESH_TOKEN = ##################
 ```
 
 # 📝 Examples Usage
