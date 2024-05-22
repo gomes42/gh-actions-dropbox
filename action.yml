@@ -1,5 +1,5 @@
 name: "GitHub Actions for Dropbox"
-description: "📦 Collection of Github Actions for Dropbox API. (Upload, Download .zip)"
+description: "📦 Collection of GitHub Actions for Dropbox API. (Upload, Download .zip)"
 branding:
   icon: upload-cloud
   color: blue
