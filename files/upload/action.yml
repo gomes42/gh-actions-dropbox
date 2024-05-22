@@ -1,0 +1,79 @@
+# https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+name: Upload
+description: Upload a file to Dropbox
+
+inputs:
+  DROPBOX_APP_KEY:
+    description: Dropbox app key
+    required: true
+  DROPBOX_APP_SECRET:
+    description: Dropbox app secret
+    required: true
+  DROPBOX_REFRESH_TOKEN:
+    description: Dropbox refresh token
+    required: true
+  SOURCE_PATH:
+    description: Path to file to upload
+    required: true
+  DEST_PATH:
+    description: Destination path
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Upload
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { execSync } = require('child_process');
+
+          // Get environment variables
+          const dropboxAppKey = process.env.DROPBOX_APP_KEY;
+          const dropboxAppSecret = process.env.DROPBOX_APP_SECRET;
+          const dropboxRefreshToken = process.env.DROPBOX_REFRESH_TOKEN;
+          const sourcePath = process.env.SOURCE_PATH;
+          const destPath = process.env.DEST_PATH;
+
+          // Get Dropbox access token
+          const accessTokenResponse = execSync(`curl -s https://api.dropbox.com/oauth2/token -d refresh_token=${dropboxRefreshToken} -d grant_type=refresh_token -d client_id=${dropboxAppKey} -d client_secret=${dropboxAppSecret}`).toString();
+          const accessToken = JSON.parse(accessTokenResponse).access_token;
+
+          // Read the file content
+          const fs = require('fs');
+          const fileContent = fs.readFileSync(sourcePath);
+
+          // Upload the file to Dropbox
+          fetch('https://content.dropboxapi.com/2/files/upload', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+              'Dropbox-API-Arg': JSON.stringify({
+                path: destPath,
+                mode: 'overwrite',
+                autorename: false,
+                mute: false,
+                strict_conflict: false
+              }),
+              'Content-Type': 'application/octet-stream'
+            },
+            body: fileContent
+          })
+          .then(res => res.json())
+          .then(json => {
+            if (json.error) {
+              throw new Error(`Dropbox upload failed: ${json.error_summary}`);
+            } else {
+              console.log(`File uploaded successfully to ${json.path_display}`);
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
+      env:
+        DROPBOX_APP_KEY: ${{ inputs.DROPBOX_APP_KEY }}
+        DROPBOX_APP_SECRET: ${{ inputs.DROPBOX_APP_SECRET }}
+        DROPBOX_REFRESH_TOKEN: ${{ inputs.DROPBOX_REFRESH_TOKEN }}
+        SOURCE_PATH: ${{ inputs.SOURCE_PATH }}
+        DEST_PATH: ${{ inputs.DEST_PATH }}
