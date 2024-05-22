@@ -1,4 +1,4 @@
-# 📦 GitHub Actions for Dropbox (`gh-actions-dropbox`)
+# 📦 Collection of GitHub Actions for Dropbox (`gh-actions-dropbox`)
 
 Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropbox. This tool simplifies interactions with the [Dropbox API](https://www.dropbox.com/developers/documentation/http/documentation), enabling file management within your automated workflows. By incorporating Dropbox functionalities into your pipeline, you can streamline tasks such as backups, file transfers, and data synchronization, enhancing the efficiency and reliability of your development processes.
 
