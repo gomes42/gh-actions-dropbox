@@ -1,0 +1,11 @@
+name: "gh-actions-dropbox"
+description: "📦 Github Actions for Dropbox API"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Log
+      uses: actions/github-script@v6
+      with:
+        script: |
+          throw new Error(`See usage examples at: https://github.com/lgxm3z/gh-actions-dropbox`);
