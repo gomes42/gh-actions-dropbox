@@ -1,4 +1,4 @@
-name: "gh-actions-dropbox"
+name: "Github Actions for Dropbox"
 description: "📦 Github Actions for Dropbox API. (Upload, Download .zip)"
 branding:
   icon: upload-cloud
