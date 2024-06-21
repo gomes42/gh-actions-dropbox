@@ -1,5 +1,5 @@
 name: "GitHub Actions for Dropbox"
-description: "📦 Collection of GitHub Actions for Dropbox API. (Upload, Download .zip)"
+description: "📦 Collection of GitHub Actions for Dropbox API. (Upload, Download file, Download .zip)"
 branding:
   icon: upload-cloud
   color: blue
@@ -8,7 +8,7 @@ runs:
   using: "composite"
   steps:
     - name: Log
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           throw new Error(`See usage examples at: https://github.com/lgxm3z/gh-actions-dropbox`);

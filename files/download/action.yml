@@ -1,6 +1,6 @@
-# https://www.dropbox.com/developers/documentation/http/documentation#files-download_zip
-name: Download .zip
-description: Download a folder from Dropbox, as a zip file
+# https://www.dropbox.com/developers/documentation/http/documentation#files-download
+name: Download file
+description: Download a single file from Dropbox
 
 inputs:
   DROPBOX_APP_KEY:
@@ -13,7 +13,7 @@ inputs:
     description: Dropbox refresh token
     required: true
   SOURCE_PATH:
-    description: Path to folder to download
+    description: Filepath to download (e.g. /path/to/file.txt)
     required: true
   DEST_PATH:
     description: Destination path
@@ -22,7 +22,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Download .zip
+    - name: Download file
       uses: actions/github-script@v7
       with:
         script: |
@@ -48,7 +48,7 @@ runs:
           }
             
           // Download the file from Dropbox
-          execSync(`curl -X POST https://content.dropboxapi.com/2/files/download_zip --header "Authorization: Bearer ${accessToken}" --header "Dropbox-API-Arg: {\\"path\\": \\"${SOURCE_PATH}\\"}" --output ${DEST_PATH}`);
+          execSync(`curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${accessToken}" --header "Dropbox-API-Arg: {\\"path\\": \\"${SOURCE_PATH}\\"}" --output ${DEST_PATH}`);
             
           // Check if the download was successful
           if (fs.existsSync(DEST_PATH)) {
