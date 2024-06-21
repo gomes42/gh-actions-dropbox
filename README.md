@@ -66,7 +66,7 @@ jobs:
 </details>
 
 <details open>
-<summary>Download a file from Dropbox</summary>
+<summary>Download a file from Dropbox 📩</summary>
 <br>
 
 ```yaml
