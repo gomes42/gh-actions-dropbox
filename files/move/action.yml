@@ -1,0 +1,53 @@
+# https://www.dropbox.com/developers/documentation/http/documentation#files-move
+name: Move file or folder
+description: Move a file or folder within Dropbox
+
+inputs:
+  DROPBOX_APP_KEY:
+    description: Dropbox app key
+    required: true
+  DROPBOX_APP_SECRET:
+    description: Dropbox app secret
+    required: true
+  DROPBOX_REFRESH_TOKEN:
+    description: Dropbox refresh token
+    required: true
+  SOURCE_PATH:
+    description: Filepath to file or directory on dropbox (e.g. /path/to/file.txt)
+    required: true
+  DEST_PATH:
+    description: Destination path for the file or directory on dropbox
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: move file or folder
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { execSync } = require('child_process');
+          const fs = require('fs');
+          const path = require('path');
+            
+          // Get environment variables
+          const DROPBOX_APP_KEY = process.env.DROPBOX_APP_KEY;
+          const DROPBOX_APP_SECRET = process.env.DROPBOX_APP_SECRET;
+          const DROPBOX_REFRESH_TOKEN = process.env.DROPBOX_REFRESH_TOKEN;
+          const SOURCE_PATH = process.env.SOURCE_PATH;
+          const DEST_PATH = process.env.DEST_PATH;
+            
+          // Get Dropbox access token
+          const accessTokenResponse = execSync(`curl -s https://api.dropbox.com/oauth2/token -d refresh_token=${DROPBOX_REFRESH_TOKEN} -d grant_type=refresh_token -d client_id=${DROPBOX_APP_KEY} -d client_secret=${DROPBOX_APP_SECRET}`).toString();
+          const accessToken = JSON.parse(accessTokenResponse).access_token;
+            
+          // Move the file/folder on Dropbox
+          const output = execSync(`curl -X POST https://api.dropboxapi.com/2/files/move_v2 -H 'Authorization: Bearer ${accessToken}' -H 'Content-Type: application/json' -d '{"from_path": "${SOURCE_PATH}", "to_path": "${DEST_PATH}"}'`);
+          console.log('output:', output.toString());
+          //execSync(`curl -X POST https://api.dropboxapi.com/2/files/move_v2 --header "Authorization: Bearer ${accessToken}" --header "Dropbox-API-Arg: {\\"from_path\\": \\"${SOURCE_PATH}\\",\\"to_path\\": \\"${DEST_PATH}\\"}"`);
+      env:
+        DROPBOX_APP_KEY: ${{ inputs.DROPBOX_APP_KEY }}
+        DROPBOX_APP_SECRET: ${{ inputs.DROPBOX_APP_SECRET }}
+        DROPBOX_REFRESH_TOKEN: ${{ inputs.DROPBOX_REFRESH_TOKEN }}
+        SOURCE_PATH: ${{ inputs.SOURCE_PATH }}
+        DEST_PATH: ${{ inputs.DEST_PATH }}
