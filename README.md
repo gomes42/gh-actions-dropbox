@@ -7,6 +7,7 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
 `File Upload`<br>
 `Download file`<br>
 `Download folder as .zip`<br>
+`Move file/folder`<br>
 
 # ⚙️ Configuration
 
