@@ -40,11 +40,20 @@ runs:
           // Get Dropbox access token
           const accessTokenResponse = execSync(`curl -s https://api.dropbox.com/oauth2/token -d refresh_token=${DROPBOX_REFRESH_TOKEN} -d grant_type=refresh_token -d client_id=${DROPBOX_APP_KEY} -d client_secret=${DROPBOX_APP_SECRET}`).toString();
           const accessToken = JSON.parse(accessTokenResponse).access_token;
-            
-          // Move the file/folder on Dropbox
-          const output = execSync(`curl -X POST https://api.dropboxapi.com/2/files/move_v2 -H 'Authorization: Bearer ${accessToken}' -H 'Content-Type: application/json' -d '{"from_path": "${SOURCE_PATH}", "to_path": "${DEST_PATH}"}'`);
-          console.log('output:', output.toString());
-          //execSync(`curl -X POST https://api.dropboxapi.com/2/files/move_v2 --header "Authorization: Bearer ${accessToken}" --header "Dropbox-API-Arg: {\\"from_path\\": \\"${SOURCE_PATH}\\",\\"to_path\\": \\"${DEST_PATH}\\"}"`);
+          try {
+            // Move the file/folder on Dropbox
+            const output = execSync(`curl -X POST https://api.dropboxapi.com/2/files/move_v2 -H 'Authorization: Bearer ${accessToken}' -H 'Content-Type: application/json' -d '{"from_path": "${SOURCE_PATH}", "to_path": "${DEST_PATH}"}'`);
+
+            const parsedResponse = JSON.parse(output.toString());
+
+            if (parsedResponse.error_summary || parsedResponse.error) {
+              throw new Error(parsedResponse.error_summary || parsedResponse.error);
+            } else {
+              console.log(`${SOURCE_PATH} moved to ${DEST_PATH} successfully`);
+            }
+          } catch (error) {
+            throw new Error(error.message);
+          }
       env:
         DROPBOX_APP_KEY: ${{ inputs.DROPBOX_APP_KEY }}
         DROPBOX_APP_SECRET: ${{ inputs.DROPBOX_APP_SECRET }}
