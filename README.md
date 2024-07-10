@@ -132,7 +132,7 @@ jobs:
 </details>
 
 <details>
-<summary>Move a file or folder on Dropbox</summary>
+<summary>Move a file or folder on Dropbox 🔀</summary>
 <br>
 
 ```yaml
@@ -166,6 +166,10 @@ jobs:
 # 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a [Pull Request](https://github.com/lgxm3z/gh-actions-dropbox/pulls) or [open an issue](https://github.com/lgxm3z/gh-actions-dropbox/issues).
+
+<a href = "https://github.com/lgxm3z/gh-actions-dropbox/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=lgxm3z/gh-actions-dropbox"/>
+</a>
 
 # 📜 License
 
