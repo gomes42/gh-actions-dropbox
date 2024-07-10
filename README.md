@@ -7,6 +7,7 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
 `File Upload`<br>
 `Download file`<br>
 `Download folder as .zip`<br>
+`Move file/folder`<br>
 
 # ⚙️ Configuration
 
@@ -19,6 +20,7 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
    | files/upload       | `files.content.write` |
    | files/download     | `files.content.read`  |
    | files/download_zip | `files.content.read`  |
+   | files/move         | `files.content.write` |
 
 3. Generate an **Access Token** and **Refresh Token**: <br/> Follow [This Guide](https://preventdirectaccess.com/docs/create-app-key-access-token-for-dropbox-account/#access-token).
 
@@ -33,8 +35,8 @@ DROPBOX_REFRESH_TOKEN = ##################
 
 # 📝 Examples Usage
 
-<details open>
-<summary>Upload file to Dropbox 📤</summary>
+<details>
+<summary>Upload a file to Dropbox 📤</summary>
 <br>
 
 ```yaml
@@ -65,7 +67,7 @@ jobs:
 
 </details>
 
-<details open>
+<details>
 <summary>Download a file from Dropbox 📩</summary>
 <br>
 
@@ -97,7 +99,7 @@ jobs:
 
 </details>
 
-<details open>
+<details>
 <summary>Download a folder as <code>.zip</code> from Dropbox 📁</summary>
 <br>
 
@@ -125,6 +127,38 @@ jobs:
           # DEST_PATH:
           #   Destination .zip file path
           #   (in container)
+```
+
+</details>
+
+<details>
+<summary>Move a file or folder on Dropbox</summary>
+<br>
+
+```yaml
+jobs:
+  my-example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🔔
+        uses: actions/checkout@v4
+
+      - name: Dropbox Move 📦
+        uses: lgxm3z/gh-actions-dropbox/files/move@2
+        with:
+          DROPBOX_APP_KEY: ${{ secrets.DROPBOX_APP_KEY }}
+          DROPBOX_APP_SECRET: ${{ secrets.DROPBOX_APP_SECRET }}
+          DROPBOX_REFRESH_TOKEN: ${{ secrets.DROPBOX_REFRESH_TOKEN }}
+          SOURCE_PATH: /MyFiles/File.txt
+          DEST_PATH: /MyFiles/MoveInHere/File.txt
+
+          # SOURCE_PATH:
+          #   Path to a file or folder
+          #   (relative to root of Dropbox account)
+
+          # DEST_PATH:
+          #   Path to the new location
+          #   (relative to root of Dropbox account)
 ```
 
 </details>
