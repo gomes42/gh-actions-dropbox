@@ -4,10 +4,12 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
 
 # 🚀 Available Actions<br>
 
-`File Upload`<br>
-`Download file`<br>
-`Download folder as .zip`<br>
-`Move file/folder`<br>
+- `File Upload`
+- `Download file`
+- `Download folder as .zip`
+- `Move file/folder`
+
+See [Examples Usage](https://github.com/lgxm3z/gh-actions-dropbox?tab=readme-ov-file#-examples-usage)
 
 # ⚙️ Configuration
 
