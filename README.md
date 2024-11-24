@@ -9,7 +9,7 @@ Easily integrate Dropbox into your CI/CD pipelines with GitHub Actions for Dropb
 - `Download folder as .zip`
 - `Move file/folder`
 
-See [Examples Usage](https://github.com/gomes42/gh-actions-dropbox?tab=readme-ov-file#-examples-usage)
+See [Examples Usage](https://github.com/gomes042/gh-actions-dropbox?tab=readme-ov-file#-examples-usage)
 
 # ⚙️ Configuration
 
@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Dropbox Upload 📦
-        uses: gomes42/gh-actions-dropbox/files/upload@2
+        uses: gomes042/gh-actions-dropbox/files/upload@2
         with:
           DROPBOX_APP_KEY: ${{ secrets.DROPBOX_APP_KEY }}
           DROPBOX_APP_SECRET: ${{ secrets.DROPBOX_APP_SECRET }}
@@ -82,7 +82,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Dropbox Download file 📦
-        uses: gomes42/gh-actions-dropbox/files/download@2
+        uses: gomes042/gh-actions-dropbox/files/download@2
         with:
           DROPBOX_APP_KEY: ${{ secrets.DROPBOX_APP_KEY }}
           DROPBOX_APP_SECRET: ${{ secrets.DROPBOX_APP_SECRET }}
@@ -114,7 +114,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Dropbox Download (.zip) 📦
-        uses: gomes42/gh-actions-dropbox/files/download_zip@2
+        uses: gomes042/gh-actions-dropbox/files/download_zip@2
         with:
           DROPBOX_APP_KEY: ${{ secrets.DROPBOX_APP_KEY }}
           DROPBOX_APP_SECRET: ${{ secrets.DROPBOX_APP_SECRET }}
@@ -146,7 +146,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Dropbox Move 📦
-        uses: gomes42/gh-actions-dropbox/files/move@2
+        uses: gomes042/gh-actions-dropbox/files/move@2
         with:
           DROPBOX_APP_KEY: ${{ secrets.DROPBOX_APP_KEY }}
           DROPBOX_APP_SECRET: ${{ secrets.DROPBOX_APP_SECRET }}
@@ -167,10 +167,10 @@ jobs:
 
 # 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a [Pull Request](https://github.com/gomes42/gh-actions-dropbox/pulls) or [open an issue](https://github.com/gomes42/gh-actions-dropbox/issues).
+Contributions are welcome! Please feel free to submit a [Pull Request](https://github.com/gomes042/gh-actions-dropbox/pulls) or [open an issue](https://github.com/gomes042/gh-actions-dropbox/issues).
 
-<a href = "https://github.com/gomes42/gh-actions-dropbox/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo=gomes42/gh-actions-dropbox"/>
+<a href = "https://github.com/gomes042/gh-actions-dropbox/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=gomes042/gh-actions-dropbox"/>
 </a>
 
 # 📜 License
